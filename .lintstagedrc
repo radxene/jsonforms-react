@@ -1,0 +1,9 @@
+{
+  "src/**/*.scss": [
+    "csscomb --tty-mode"
+  ],
+  "src/**/*.{ts,tsx}": [
+    "eslint --max-warnings=0 --ignore-path .gitignore",
+    "prettier --write"
+  ]
+}
