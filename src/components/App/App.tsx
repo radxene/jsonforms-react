@@ -3,7 +3,7 @@ import React from 'react';
 import { Dashboard } from '@/components/Dashboard';
 import { ExampleForm } from '@/builder/forms/example';
 
-import '@/components/App/App.scss';
+import './App.scss';
 
 interface AppProps {}
 

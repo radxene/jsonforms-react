@@ -11,10 +11,9 @@
   "dependencies": {
     "@emotion/react": "11.9.0",
     "@emotion/styled": "11.8.1",
-    "@jsonforms/core": "2.5.2",
-    "@jsonforms/examples": "2.5.2",
-    "@jsonforms/material-renderers": "2.5.2",
-    "@jsonforms/react": "2.5.2",
+    "@jsonforms/core": "3.0.0-alpha.3",
+    "@jsonforms/material-renderers": "3.0.0-alpha.3",
+    "@jsonforms/react": "3.0.0-alpha.3",
     "@mui/icons-material": "5.6.1",
     "@mui/material": "5.6.1",
     "@mui/styles": "5.6.1",
