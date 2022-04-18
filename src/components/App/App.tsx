@@ -1,6 +1,7 @@
 import React from 'react';
 
-import logo from '@/components/App/logo.svg';
+import { Dashboard } from '@/components/Dashboard';
+import { ExampleForm } from '@/builder/forms/example';
 
 import '@/components/App/App.scss';
 
@@ -9,10 +10,9 @@ interface AppProps {}
 export const App: React.FC<AppProps> = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Project is created !</p>
-      </header>
+      <Dashboard>
+        <ExampleForm />
+      </Dashboard>
     </div>
   );
 };
