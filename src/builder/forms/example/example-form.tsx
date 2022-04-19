@@ -1,21 +1,31 @@
 import React from 'react';
 import Paper from '@mui/material/Paper';
 import { JsonForms } from '@jsonforms/react';
-import { UISchemaElement, JsonSchema7 } from '@jsonforms/core';
+import { UISchemaElement, JsonSchema } from '@jsonforms/core';
 import { materialRenderers, materialCells } from '@jsonforms/material-renderers';
+
+import Data from './mock_data.json';
+import { JsonButtonTester, JsonButtonControl } from './JsonButton';
 
 interface ExampleFormProps {}
 
+const renderers = [
+  ...materialRenderers,
+  // register custom renderers
+  { tester: JsonButtonTester, renderer: JsonButtonControl },
+];
+
 export const ExampleForm: React.FC<ExampleFormProps> = () => {
-  const [schema, setSchema] = React.useState<JsonSchema7>({});
+  const [schema, setSchema] = React.useState<JsonSchema>({});
   const [uiSchema, setUiSchema] = React.useState<UISchemaElement>();
-  const [dataSchema, setDataSchema] = React.useState<JsonSchema7>({});
+  const [dataSchema, setDataSchema] = React.useState({});
 
   React.useEffect(() => {
     const fetchAsync = async () => {
       const result = await getApiSchema();
       if (result && result.success && existsAllSchemas(result.data)) {
-        const { Schema, UISchema, DATASchema } = result.data;
+        // const { Schema, UISchema, DATASchema } = result.data;
+        const { Schema, UISchema, DATASchema } = Data;
         setSchema(Schema);
         setUiSchema(UISchema);
         setDataSchema(DATASchema);
@@ -32,9 +42,11 @@ export const ExampleForm: React.FC<ExampleFormProps> = () => {
             schema={schema}
             uischema={uiSchema}
             data={dataSchema}
-            renderers={materialRenderers}
+            renderers={renderers}
             cells={materialCells}
-            onChange={({ data }) => setDataSchema(data)}
+            onChange={({ data }) => {
+              setDataSchema(data);
+            }}
           />
         </Paper>
       )}
@@ -42,7 +54,7 @@ export const ExampleForm: React.FC<ExampleFormProps> = () => {
   );
 };
 
-function existsAllSchemas(schemas: JsonSchema7) {
+function existsAllSchemas(schemas: JsonSchema) {
   const requireds = ['Schema', 'UISchema', 'DATASchema'];
   for (const key in schemas) {
     if (!requireds.includes(key)) {

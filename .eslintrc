@@ -29,6 +29,7 @@
     "react/prop-types": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-unescaped-entities": ["error", { "forbid": [">", "}"] }],
+    "@typescript-eslint/no-implied-eval": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-shadow": "error",
