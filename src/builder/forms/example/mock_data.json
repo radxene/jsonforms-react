@@ -80,6 +80,10 @@
           "value": {
             "type": "string"
           },
+          "align": {
+            "type": "string",
+            "enum": ["left", "right"]
+          },
           "callback": {
             "type": "string"
           }
