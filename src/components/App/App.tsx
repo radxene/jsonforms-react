@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Dashboard } from '@/components/Dashboard';
-import { ExampleForm } from '@/builder/forms/example';
+import { ExampleForm } from '@/builder/jsonforms/example';
 
 import './App.scss';
 

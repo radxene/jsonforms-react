@@ -4,15 +4,18 @@ import { JsonForms } from '@jsonforms/react';
 import { UISchemaElement, JsonSchema } from '@jsonforms/core';
 import { materialRenderers, materialCells } from '@jsonforms/material-renderers';
 
-import Data from './mock_data.json';
-import { JsonButtonTester, JsonButtonControl } from './JsonButton';
+import { existsAllSchemas, makeScopedTester } from '@/utils';
+import { JsonButtonControl } from '../JsonButton';
+import { JsonIframeControl } from '../JsonIframe';
+// import MockData from './mock_data.json';
 
 interface ExampleFormProps {}
 
 const renderers = [
   ...materialRenderers,
-  // register custom renderers
-  { tester: JsonButtonTester, renderer: JsonButtonControl },
+  // custom renderers
+  { tester: makeScopedTester(3, 'json_button'), renderer: JsonButtonControl },
+  { tester: makeScopedTester(3, 'json_iframe'), renderer: JsonIframeControl },
 ];
 
 export const ExampleForm: React.FC<ExampleFormProps> = () => {
@@ -24,8 +27,8 @@ export const ExampleForm: React.FC<ExampleFormProps> = () => {
     const fetchAsync = async () => {
       const result = await getApiSchema();
       if (result && result.success && existsAllSchemas(result.data)) {
-        // const { Schema, UISchema, DATASchema } = result.data;
-        const { Schema, UISchema, DATASchema } = Data;
+        const { Schema, UISchema, DATASchema } = result.data;
+        // const { Schema, UISchema, DATASchema } = MockData;
         setSchema(Schema);
         setUiSchema(UISchema);
         setDataSchema(DATASchema);
@@ -53,16 +56,6 @@ export const ExampleForm: React.FC<ExampleFormProps> = () => {
     </React.Fragment>
   );
 };
-
-function existsAllSchemas(schemas: JsonSchema) {
-  const requireds = ['Schema', 'UISchema', 'DATASchema'];
-  for (const key in schemas) {
-    if (!requireds.includes(key)) {
-      return false;
-    }
-  }
-  return true;
-}
 
 async function getApiSchema() {
   try {

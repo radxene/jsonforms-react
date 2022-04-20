@@ -82,7 +82,10 @@
           },
           "align": {
             "type": "string",
-            "enum": ["left", "right"]
+            "enum": [
+              "left",
+              "right"
+            ]
           },
           "callback": {
             "type": "string"
@@ -91,6 +94,28 @@
         "required": [
           "value",
           "callback"
+        ]
+      },
+      "json_iframe": {
+        "type": "object",
+        "properties": {
+          "src": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "width": {
+            "type": "string"
+          },
+          "height": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "src",
+          "width",
+          "height"
         ]
       }
     }
@@ -145,6 +170,15 @@
               {
                 "type": "Control",
                 "scope": "#/properties/json_button"
+              }
+            ]
+          },
+          {
+            "type": "HorizontalLayout",
+            "elements": [
+              {
+                "type": "Control",
+                "scope": "#/properties/json_iframe"
               }
             ]
           }
@@ -233,17 +267,19 @@
       "showNavButtons": true
     }
   },
-
-
   "DATASchema": {
     "provideAddress": true,
     "vegetarian": false,
-
     "json_button": {
       "value": "Call Center",
       "align": "right",
       "callback": "(() => console.log('hello from call center'))()"
+    },
+    "json_iframe": {
+      "title": "JsonForms Frame Example",
+      "width": "500",
+      "height": "300",
+      "src": "https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
     }
-
   }
 }

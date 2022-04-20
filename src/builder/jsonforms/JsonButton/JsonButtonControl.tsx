@@ -11,9 +11,9 @@ interface JsonButtonBaseProps {
 }
 
 const JsonButtonBase: React.FC<JsonButtonBaseProps> = ({ data }) => {
-  const { value, align, callback } = data || {};
+  const { callback, ...restProps } = data || {};
   const clickHandler = new Function(callback) as VoidFunction;
-  return <JsonButton value={value} align={align} onClick={clickHandler} />;
+  return <JsonButton onClick={clickHandler} {...restProps} />;
 };
 
 export const JsonButtonControl = withJsonFormsControlProps(JsonButtonBase);
