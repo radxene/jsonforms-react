@@ -4,7 +4,7 @@ import { JsonForms } from '@jsonforms/react';
 import { UISchemaElement, JsonSchema } from '@jsonforms/core';
 import { materialRenderers, materialCells } from '@jsonforms/material-renderers';
 
-import { existsAllSchemas, makeScopedTester } from '@/utils';
+import { existsAllSchemas, makeScopedTester, apiUrl } from '@/utils';
 import { JsonButtonControl } from '../JsonButton';
 import { JsonIframeControl } from '../JsonIframe';
 // import MockData from './mock_data.json';
@@ -59,7 +59,7 @@ export const ExampleForm: React.FC<ExampleFormProps> = () => {
 
 async function getApiSchema() {
   try {
-    const response = await fetch('/api/token/v1/b3eb7f02cd2afb37882045c6dbdbd128');
+    const response = await fetch(apiUrl('api/token/v1/b3eb7f02cd2afb37882045c6dbdbd128'));
     return await response.json();
   } catch (e) {
     console.log(e);
