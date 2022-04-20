@@ -229,12 +229,17 @@
       "showNavButtons": true
     }
   },
+
+
   "DATASchema": {
     "provideAddress": true,
     "vegetarian": false,
+
     "json_button": {
       "value": "Call Center",
-      "callback": "(() => alert('hello from call center'))()"
+      "align": "right",
+      "callback": "(() => console.log('hello from call center'))()"
     }
+
   }
 }

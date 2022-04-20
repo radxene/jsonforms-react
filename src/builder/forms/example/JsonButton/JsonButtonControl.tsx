@@ -1,18 +1,19 @@
 import { withJsonFormsControlProps } from '@jsonforms/react';
 
-import { JsonButton } from './JsonButton';
+import { JsonButton, JsonButtonFields } from './JsonButton';
+
+interface JsonButtonControlData extends JsonButtonFields {
+  callback: string;
+}
 
 interface JsonButtonBaseProps {
-  data: {
-    value: string;
-    callback: string;
-  };
+  data: JsonButtonControlData;
 }
 
 const JsonButtonBase: React.FC<JsonButtonBaseProps> = ({ data }) => {
-  const { value, callback } = data || {};
+  const { value, align, callback } = data || {};
   const clickHandler = new Function(callback) as VoidFunction;
-  return <JsonButton value={value} onClick={clickHandler} />;
+  return <JsonButton value={value} align={align} onClick={clickHandler} />;
 };
 
 export const JsonButtonControl = withJsonFormsControlProps(JsonButtonBase);
